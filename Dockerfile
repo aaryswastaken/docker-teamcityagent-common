@@ -5,7 +5,7 @@ RUN yum -y update && yum install -y python-dev python-pip gcc make gcc-c++ \
  && yum clean all
 
 # --------------------------------------------------------------- teamcity-agent
-ENV TEAMCITY_VERSION 9.0.4
+ENV TEAMCITY_VERSION 10.0
 ENV TEAMCITY_GIT_PATH /usr/bin/git
 ENV AGENT_PORT 9090
 
@@ -25,7 +25,7 @@ RUN chmod +x /srv/teamcity-agent/bin/*.sh \
 
 
 # ----------------------------------------------------------------------- nodejs
-ENV NODE_VERSION 0.12.2
+ENV NODE_VERSION 6.9.4
 
 RUN (curl -L http://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz | gunzip -c | tar x) \
  && cp -R node-v${NODE_VERSION}-linux-x64/* /usr/ \
