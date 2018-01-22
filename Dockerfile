@@ -46,7 +46,7 @@ ENV MAVEN_OPTS -Xmx512m -Xss256k -XX:+UseCompressedOops
 
 RUN yum install -y python-devel yum-utils jq && yum clean all \
     && yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo \
-    && yum install -y docker-ce
+    && yum install -y docker-ce \
     && pip install --upgrade docker-compose awscli
 ENV DOCKER_AVAILABLE=1
 
