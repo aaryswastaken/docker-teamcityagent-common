@@ -58,7 +58,7 @@ ENV DOCKER_AVAILABLE=1
 # ------------------------------------------------------------------------ Python AWS & other tools
 RUN yum install jq \
  && pip install --upgrade awscli
-AWS_AVAILABLE=1
+ENV AWS_AVAILABLE=1
 
 # ------------------------------------------------------------------------ VCS
 
