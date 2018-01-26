@@ -6,7 +6,7 @@ This image provides teamcity build agent which might be connected to teamcity se
 
 __NOTE__: It is highly recommended to keep Teamcity Server and agent versions in sync. While it is possible to use __older__ version of agent with newer version of Teamcity this setup is not recommended as it will cause agent update on each new agent container provisioning.
 
-##Contents
+## Contents
 
 Along with agent itself this image contains a few set of software widely used in typical build chains. Table below contains the main packages and theirs versions:
 
@@ -27,6 +27,20 @@ Along with agent itself this image contains a few set of software widely used in
 | git                                  | latest   |                                          |
 
 \* __latest__ version means the recent stable version in repositories available on the moment of image build.
+
+## Interfaces
+
+### Exposed Ports
+
+| Port | Description                              |
+| ---- | ---------------------------------------- |
+| 9090 | The port used for communication between TeamCity server and Agent. It is required to make sure that Teamcity could establish network connection with agent on this port. |
+
+## Exposed Volumes
+
+| Path                     | Description                              |
+| ------------------------ | ---------------------------------------- |
+| /srv/teamcity-agent/conf | The directory contains Teamcity agent configuration files. You might consider mapping this volume in case you need to tweak configuration manually. |
 
 ## Usage
 
@@ -59,7 +73,7 @@ Nowadays it is pretty common to build docker images as a part of continuous inte
 
 In order to configure this setup you need to set `DOCKER_HOST` environment variable to point docker server accessible from the container. There are multiple options how to achieve this. We describe a few below, however you should be careful in your choices and **consider security implications** before implementation.
 
-####Option 1. Share docker server from  your host.
+#### Option 1. Share docker server from  your host.
 
 You can simply grand access to the docker server of the machine you use to run this container with build agent. This is the easiest configuration possible **BUT it is also the most dangerous one**! It means that your agent will have FULL access on the containers running on the machine including own container and also other containers on the same machine. **Please think twice before doing this and ensure you understand the risks**. In general this might be a good option if you do not run anything critical on the same machine with your agent and you are not able to setup more complicated configuration.
 
@@ -93,7 +107,7 @@ Just configure you host machine to run 2 docker daemons and use the first one fo
 
 Note there is still a non addressed security risk - your build agent along with building, pushing and pulling images might also **run** new containers and generally do whatever is possible with docker daemon (full access).
 
-####Option 3. Setup separate docker daemon with http interface behind proxy
+#### Option 3. Setup separate docker daemon with http interface behind proxy
 
 An idea is the similar to the prev. one but we add http proxy (e.g. nginx) to limit allowed api calls to `BUILD`, `PULL`, `PUSH`, `TAG`, `AUTH`. Below is simple nginx config which might do the trick:
 
@@ -142,4 +156,4 @@ This image was originally built by Dmitry Berezovsky (Logicify). The list of mai
 
 ## Contribution
 
-This image is connected to Docker Cloud automated builds and configured to rebuild images on each push to the repository. It should pick changes from the `master` branch and tag those builds as `latest` AND also pick **any** repository tag. In that case it will build from repository tag, assign the same docker image tag and change `latest` to point the recent build.
+This image is connected to the [Docker Cloud](https://cloud.docker.com) automated builds and configured to rebuild images on each push to the repository. It should **automatically** pick changes from **any** repository tag. In that case it will build from repository tag, assign the same docker image tag and change `latest` to point the recent build. In order to build image from the `mater` branch it is required to trigger build manually via [Docker Cloud Console](https://cloud.docker.com/app/logicify/repository/). 
