@@ -10,25 +10,34 @@ __NOTE__: It is highly recommended to keep Teamcity Server and agent versions in
 
 Along with agent itself this image contains a few set of software widely used in typical build chains. Table below contains the main packages and theirs versions:
 
-| Package                              | Version  | Description                              |
-| ------------------------------------ | -------- | ---------------------------------------- |
-| Teamcity Build Agent                 | 2017.2.1 | Build agent itself                       |
-| [NodeJS](https://nodejs.org/)        | 8.9.4    | Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. Includes NPM - the default package manager. |
-| [Grunt](https://gruntjs.com/)        | latest   | JavaScript task runner, a tool used to automatically perform frequent tasks such as minification, compilation, unit testing, and linting. |
-| [Gulp](https://gulpjs.com/)          | latest   | Streaming build system for front-end web development |
-| Karma                                | latest   |                                          |
-| [Yarn](https://yarnpkg.com/)         | latest   | Fast, reliable, and secure dependency management for NodeJS. |
-| [Maven](https://maven.apache.org/)   | 3.5.2    | Maven is a build automation tool used primarily for Java projects. |
-| Docker                               | latest   |                                          |
-| docker-compose                       | latest   |                                          |
-| [JQ](https://stedolan.github.io/jq/) | latest   | Very high-level functional programming language with support for backtracking and managing streams of JSON data. Something like **sed** for JSON. |
-| awscli                               | latest   |                                          |
-| subversion                           | latest   |                                          |
-| git                                  | latest   |                                          |
+| Package                                  | Version  | Description                              |
+| ---------------------------------------- | -------- | ---------------------------------------- |
+| Teamcity Build Agent                     | 2017.2.1 | Build agent itself                       |
+| [NodeJS](https://nodejs.org/)            | 8.9.4    | Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. Includes NPM - the default package manager. |
+| [Grunt](https://gruntjs.com/)            | latest   | JavaScript task runner, a tool used to automatically perform frequent tasks such as minification, compilation, unit testing, and linting. |
+| [Gulp](https://gulpjs.com/)              | latest   | Streaming build system for front-end web development |
+| Karma                                    | latest   |                                          |
+| [Yarn](https://yarnpkg.com/)             | latest   | Fast, reliable, and secure dependency management for NodeJS. |
+| [Maven](https://maven.apache.org/)       | 3.5.2    | Maven is a build automation tool used primarily for Java projects. |
+| [Docker](https://www.docker.com/)        | latest   |                                          |
+| [docker-compose](https://docs.docker.com/compose/) | latest   | Compose is a tool for defining and running multi-container Docker applications |
+| [JQ](https://stedolan.github.io/jq/)     | latest   | Very high-level functional programming language with support for backtracking and managing streams of JSON data. Something like **sed** for JSON. |
+| awscli                                   | latest   |                                          |
+| subversion                               | latest   |                                          |
+| git                                      | latest   |                                          |
 
 \* __latest__ version means the recent stable version in repositories available on the moment of image build.
 
-## Interfaces
+## Technical Information
+
+### Base Images
+
+**OS**: [Centos 7](https://www.centos.org/)
+
+Parent Image Chain:
+
+* [logicify/java8:latest](https://hub.docker.com/r/logicify/java8/)
+* [logicify/centos7:latest](https://hub.docker.com/r/logicify/centos7/)
 
 ### Exposed Ports
 
@@ -36,7 +45,7 @@ Along with agent itself this image contains a few set of software widely used in
 | ---- | ---------------------------------------- |
 | 9090 | The port used for communication between TeamCity server and Agent. It is required to make sure that Teamcity could establish network connection with agent on this port. |
 
-## Exposed Volumes
+### Exposed Volumes
 
 | Path                     | Description                              |
 | ------------------------ | ---------------------------------------- |
