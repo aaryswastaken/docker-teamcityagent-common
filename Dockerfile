@@ -35,7 +35,7 @@ RUN (curl -L http://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux
 RUN npm install -g yarn
 
 # ------------------------------------------------------------------------ maven
-ENV MAVEN_VERSION 3.5.2
+ENV MAVEN_VERSION 3.5.4
 
 RUN (curl -L http://www.us.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | gunzip -c | tar x) \
  && mv apache-maven-$MAVEN_VERSION /opt/apache-maven
