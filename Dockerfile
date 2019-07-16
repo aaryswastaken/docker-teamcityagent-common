@@ -5,7 +5,7 @@ RUN yum -y update && yum install -y python-dev python-pip gcc make gcc-c++ \
  && yum clean all
 
 # --------------------------------------------------------------- teamcity-agent
-ENV TEAMCITY_VERSION 2017.2.1
+ENV TEAMCITY_VERSION 2019.1.1
 ENV TEAMCITY_GIT_PATH /usr/bin/git
 ENV AGENT_PORT 9090
 
