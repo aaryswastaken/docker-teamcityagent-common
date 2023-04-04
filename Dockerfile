@@ -1,6 +1,6 @@
 FROM logicify/java8
 
-RUN yum -y update && yum install -y python-dev python-pip gcc make gcc-c++ \
+RUN yum -y update && yum install -y python3-pip gcc make gcc-c++ \
  && yum install -y libpng libjpeg ImageMagick GraphicsMagick \
  && yum clean all
 
