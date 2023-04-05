@@ -1,7 +1,7 @@
 FROM logicify/java8
 
 RUN yum -y update && yum install -y python3-pip gcc make gcc-c++ \
- && yum install -y libpng libjpeg ImageMagick GraphicsMagick \
+ && yum install -y libpng libjpeg ImageMagick GraphicsMagick glibc-devel\
  && yum clean all
 
 # --------------------------------------------------------------- teamcity-agent
