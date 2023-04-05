@@ -5,7 +5,7 @@ RUN yum -y update && yum install -y python3-pip gcc make gcc-c++ \
  && yum clean all
 
 # --------------------------------------------------------------- teamcity-agent
-ENV TEAMCITY_VERSION 2019.1.1
+ENV TEAMCITY_VERSION 2022.10.3
 ENV TEAMCITY_GIT_PATH /usr/bin/git
 ENV AGENT_PORT 9090
 
@@ -23,7 +23,7 @@ RUN chmod +x /srv/teamcity-agent/bin/*.sh \
 
 
 # ----------------------------------------------------------------------- nodejs
-ENV NODE_VERSION 8.9.4
+ENV NODE_VERSION 19.8.1
 
 RUN (curl -L http://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.gz | gunzip -c | tar x) \
  && cp -R node-v${NODE_VERSION}-linux-x64/* /usr/ \
@@ -35,7 +35,7 @@ RUN (curl -L http://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux
 RUN npm install -g yarn
 
 # ------------------------------------------------------------------------ maven
-ENV MAVEN_VERSION 3.5.4
+ENV MAVEN_VERSION 3.9.1
 
 RUN (curl -L http://www.us.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | gunzip -c | tar x) \
  && mv apache-maven-$MAVEN_VERSION /opt/apache-maven
